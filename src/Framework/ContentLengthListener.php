@@ -1,6 +1,6 @@
 <?php
 
-namespace Simplex;
+namespace Framework;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 

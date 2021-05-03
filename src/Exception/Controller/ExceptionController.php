@@ -1,11 +1,11 @@
 <?php
 
-namespace Calendar\Controller;
+namespace Exception\Controller;
 
 use Symfony\Component\ErrorHandler\Exception\FlattenException;
 use Symfony\Component\HttpFoundation\Response;
 
-class ErrorController
+class ExceptionController
 {
     public function exception(FlattenException $exception)
     {

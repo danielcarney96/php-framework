@@ -1,19 +1,19 @@
 <?php
 
-use Simplex\Framework;
+use Framework\Framework;
 use Symfony\Component\DependencyInjection;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\EventDispatcher;
 use Symfony\Component\HttpFoundation;
 use Symfony\Component\HttpKernel;
 use Symfony\Component\Routing;
-use Simplex\StringResponseListener;
+use Framework\StringResponseListener;
 
 $containerBuilder = new DependencyInjection\ContainerBuilder();
 
 $containerBuilder->setParameter('charset', 'UTF-8');
 $containerBuilder->setParameter('debug', true);
-$containerBuilder->setParameter('routes', include __DIR__.'/../src/app.php');
+$containerBuilder->setParameter('routes', include __DIR__.'/../src/routes.php');
 
 $containerBuilder->register('context', Routing\RequestContext::class);
 $containerBuilder->register('matcher', Routing\Matcher\UrlMatcher::class)
@@ -30,7 +30,7 @@ $containerBuilder->register('listener.response', HttpKernel\EventListener\Respon
     ->setArguments(['%charset%'])
 ;
 $containerBuilder->register('listener.exception', HttpKernel\EventListener\ErrorListener::class)
-    ->setArguments(['Calendar\Controller\ErrorController::exception'])
+    ->setArguments(['Exception\Controller\ExceptionController::exception'])
 ;
 $containerBuilder->register('dispatcher', EventDispatcher\EventDispatcher::class)
     ->addMethodCall('addSubscriber', [new Reference('listener.router')])
